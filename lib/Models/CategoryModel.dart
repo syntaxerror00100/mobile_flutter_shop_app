@@ -6,7 +6,5 @@ class CategoryModel {
   final Color color;
 
   const CategoryModel(
-      {@required this.id,
-      @required this.title,
-      @required this.color = Colors.orange});
+      {@required this.id, @required this.title, this.color = Colors.orange});
 }

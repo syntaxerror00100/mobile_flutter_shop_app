@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:shop_app/Models/CategoryModel.dart';
 import 'package:shop_app/Pages/Categories/Categories_page.dart';
@@ -12,8 +14,17 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Lets start a meal',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+          primarySwatch: Colors.pink,
+          accentColor: Colors.amber,
+          canvasColor: Color.fromRGBO(255, 254, 229, 1),
+          fontFamily: 'Raleway',
+          textTheme: ThemeData.light().textTheme.copyWith(
+              body1: TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
+              body2: TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
+              title: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'RobotoCondensed'))),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
@@ -29,8 +40,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
   final List<CategoryModel> categories = DATA_DUMMY_CATEGORIES;
 
   @override
