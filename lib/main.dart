@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shop_app/Models/CategoryModel.dart';
 import 'package:shop_app/Pages/Categories/Categories_page.dart';
 import './dummydata.dart';
+import './Pages/CategoryMeals/CategoryMealsPage.dart';
 
 void main() => runApp(MyApp());
 
@@ -25,7 +26,12 @@ class MyApp extends StatelessWidget {
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'RobotoCondensed'))),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      // home: MyHomePage(title: 'Flutter Demo Home Page'),
+      initialRoute: "/",
+      routes: {
+        "/": (ctx) => MyHomePage(title: 'Flutter Demo Home Page'),
+        CategoryMealPage.route: (ctx) => new CategoryMealPage()
+      },
     );
   }
 }
@@ -46,9 +52,11 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(
+          widget.title,
+        ),
       ),
-      body: CategoriesPage(categories),
+      body: CategoryItemPage(categories),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         tooltip: 'Increment',

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../CategoryMeals/CategoryMealsPage.dart';
 import '../../Models/CategoryModel.dart';
 
 class CategoryItem extends StatelessWidget {
@@ -8,18 +9,26 @@ class CategoryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text(
-        category.title,
-        style: Theme.of(context).textTheme.title,
+    return InkWell(
+      onTap: () {
+        Navigator.pushNamed(context, CategoryMealPage.route,
+            arguments: category);
+      },
+      splashColor: Theme.of(context).primaryColor,
+      borderRadius: BorderRadius.circular(15),
+      child: Container(
+        child: Text(
+          category.title,
+          style: Theme.of(context).textTheme.title,
+        ),
+        padding: const EdgeInsets.all(15),
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                colors: [category.color.withOpacity(0.5), category.color],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight),
+            borderRadius: BorderRadius.circular(15)),
       ),
-      padding: const EdgeInsets.all(15),
-      decoration: BoxDecoration(
-          gradient: LinearGradient(
-              colors: [category.color.withOpacity(0.5), category.color],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight),
-          borderRadius: BorderRadius.circular(15)),
     );
   }
 }

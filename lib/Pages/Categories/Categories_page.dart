@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:shop_app/Models/CategoryModel.dart';
 import './CategoryItem.dart';
 
-class CategoriesPage extends StatelessWidget {
+class CategoryItemPage extends StatelessWidget {
   final List<CategoryModel> categories;
 
-  const CategoriesPage(this.categories);
+  const CategoryItemPage(this.categories);
 
   List<Widget> buildCategoryItems() {
     return categories.map((item) => CategoryItem(item)).toList();
