@@ -5,6 +5,7 @@ import 'package:shop_app/Models/CategoryModel.dart';
 import 'package:shop_app/Pages/Categories/Categories_page.dart';
 import './dummydata.dart';
 
+// iTS JUST A COMMENT
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
