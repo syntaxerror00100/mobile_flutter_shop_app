@@ -97,6 +97,20 @@ class MealItem extends StatelessWidget {
                         ),
                         Text(mealObj.affordability.toString().split(".").last)
                       ],
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        deleteMealHandler(mealObj.id);
+                      },
+                      child: Row(
+                        children: <Widget>[
+                          Icon(Icons.delete),
+                          SizedBox(
+                            width: 6,
+                          ),
+                          Text('Delete')
+                        ],
+                      ),
                     )
                   ],
                 ),
