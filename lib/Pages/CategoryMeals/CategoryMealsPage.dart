@@ -36,9 +36,27 @@ class _CategoryMealPageState extends State<CategoryMealPage> {
   }
 
   void deleteMealHandler(String id) {
+    final removeObj = mealsInCategory.firstWhere((x) => x.id == id);
+    final indexOfItem = mealsInCategory.indexOf(removeObj);
     setState(() {
       mealsInCategory.removeWhere((x) => x.id == id);
     });
+
+    AnimatedListRemovedItemBuilder builder = (context, animation) {
+      return _buildListItem(indexOfItem, animation);
+    };
+
+    _listKey.currentState.removeItem(indexOfItem, builder);
+  }
+
+  final GlobalKey<AnimatedListState> _listKey = GlobalKey();
+
+  Widget _buildListItem(int index, Animation animation) {
+    final mealObj = mealsInCategory[index];
+    return SizeTransition(
+      sizeFactor: animation,
+      child: MealItem(mealObj, deleteMealHandler),
+    );
   }
 
   @override
@@ -48,14 +66,22 @@ class _CategoryMealPageState extends State<CategoryMealPage> {
         title: Text(category.title),
       ),
       body: Container(
-        child: ListView.builder(
-          itemBuilder: (BuildContext ctx, int index) {
-            final mealObj = mealsInCategory[index];
-            return MealItem(mealObj, deleteMealHandler);
-          },
-          itemCount: mealsInCategory.length,
-        ),
-      ),
+          child: AnimatedList(
+        key: _listKey,
+        initialItemCount: mealsInCategory.length,
+        itemBuilder: (ctx, index, animation) {
+          return _buildListItem(index, animation);
+        },
+      )
+
+          // ListView.builder(
+          //   itemBuilder: (BuildContext ctx, int index) {
+          //     final mealObj = mealsInCategory[index];
+          //     return MealItem(mealObj, deleteMealHandler);
+          //   },
+          //   itemCount: mealsInCategory.length,
+          // ),
+          ),
     );
   }
 }

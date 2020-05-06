@@ -27,20 +27,27 @@ class MealDetailsPage extends StatelessWidget {
                         mealObj.imageUrl,
                         fit: BoxFit.cover,
                       ))),
-              buildTitle(context, "Ingredients"),
+              buildTitle(
+                context,
+                "Ingredients",
+              ),
               buildContainer(
-                  context: context,
-                  child: ListView.builder(
-                      itemCount: ingredients.length,
-                      itemBuilder: (BuildContext ctx, int index) {
-                        return Card(
-                          color: Theme.of(context).accentColor,
-                          child: Padding(
-                              padding: EdgeInsets.all(5),
-                              child: Text(ingredients[index])),
-                        );
-                      })),
-              buildTitle(context, "Steps"),
+                context: context,
+                child: ListView.builder(
+                    itemCount: ingredients.length,
+                    itemBuilder: (BuildContext ctx, int index) {
+                      return Card(
+                        color: Theme.of(context).accentColor,
+                        child: Padding(
+                            padding: EdgeInsets.all(5),
+                            child: Text(ingredients[index])),
+                      );
+                    }),
+              ),
+              buildTitle(
+                context,
+                "Steps",
+              ),
               buildContainer(
                   context: context,
                   child: ListView.builder(
