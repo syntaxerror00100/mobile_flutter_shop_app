@@ -4,11 +4,15 @@ import '../MealDetails/MealDetailsPage.dart';
 
 class MealItem extends StatelessWidget {
   final MealModel mealObj;
+  final Function deleteMealHandler;
 
-  const MealItem(this.mealObj);
+  const MealItem(this.mealObj, this.deleteMealHandler);
 
   void navigateMealDetailsHandler(BuildContext ctx) {
-    Navigator.pushNamed(ctx, MealDetailsPage.route, arguments: mealObj.id);
+    Navigator.pushNamed(ctx, MealDetailsPage.route, arguments: mealObj.id)
+        .then((result) {
+      if (result != null) deleteMealHandler(result);
+    });
   }
 
   @override

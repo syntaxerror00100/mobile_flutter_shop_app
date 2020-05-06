@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import './Pages/MealDetails/MealDetailsPage.dart';
 import './Pages/CategoryMeals/CategoryMealsPage.dart';
 import './Pages/TabsPage.dart';
+import './Pages/Filters/FilterPage.dart';
 
 // iTS JUST A COMMENT
 void main() => runApp(MyApp());
@@ -32,7 +33,8 @@ class MyApp extends StatelessWidget {
         "/": (ctx) =>
             TabsMainPage(), // MyHomePage(title: 'Flutter Demo Home Page'),
         MealDetailsPage.route: (ctx) => new MealDetailsPage(),
-        CategoryMealPage.route: (ctx) => new CategoryMealPage()
+        CategoryMealPage.route: (ctx) => new CategoryMealPage(),
+        FilterPage.route: (ctx) => new FilterPage()
       },
     );
   }
