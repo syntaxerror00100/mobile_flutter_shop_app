@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/Models/CategoryModel.dart';
+import 'package:shop_app/Models/FilterModel.dart';
 import 'package:shop_app/Models/MealModel.dart';
 import 'package:shop_app/Pages/CategoryMeals/MealItem.dart';
 
@@ -7,6 +8,9 @@ import '../../dummydata.dart';
 
 class CategoryMealPage extends StatefulWidget {
   static const route = "/category-meals";
+  final FilterModel mealFilters;
+
+  const CategoryMealPage(this.mealFilters);
 
   @override
   _CategoryMealPageState createState() => _CategoryMealPageState();
@@ -26,9 +30,18 @@ class _CategoryMealPageState extends State<CategoryMealPage> {
   @override
   void didChangeDependencies() {
     if (!isDataInitialized) {
+      final mealFilters = widget.mealFilters;
       category = ModalRoute.of(context).settings.arguments;
-      mealsInCategory =
-          DUMMY_MEALS.where((x) => x.categories.contains(category.id)).toList();
+      mealsInCategory = DUMMY_MEALS.where((x) {
+        if (!x.categories.contains(category.id)) return false;
+
+        if (x.isGlutenFree && !mealFilters.isGlutenFree) return false;
+        if (x.isLactoseFree && !mealFilters.isLactoseFree) return false;
+        if (x.isVegan && !mealFilters.isVegan) return false;
+        if (x.isVegetarian && !mealFilters.isVegetarian) return false;
+
+        return true;
+      }).toList();
       isDataInitialized = true;
     }
     // TODO: implement didChangeDependencies

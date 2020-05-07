@@ -86,7 +86,7 @@ class MealDetailsPage extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 10),
       child: Text(
         text,
-        style: Theme.of(ctx).textTheme.title,
+        style: Theme.of(ctx).textTheme.headline1,
       ),
     );
   }
